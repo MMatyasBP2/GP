@@ -1,4 +1,4 @@
-x=c(1,2,3,4,5
+x=c(1,2,3,4,5)
 emp=function(x)
 { s=0
   avg=0
