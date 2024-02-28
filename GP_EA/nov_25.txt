@@ -1,0 +1,40 @@
+set.seed(101);x=0.2*qgamma(runif(100),1.2)
+hist(x, col="green")
+a=c(0,0.5,1.5,3.5,6,20)
+p=vector()
+for (i in 1:(length(a)-1)) p[i]=pexp(a[i+1])-pexp(a[i])
+p
+np=length(x)*p
+np
+x.cut=cut(x/mean(x),breaks=a)
+x.cut
+nu=vector()
+for (i in 1:(length(a)-1)) nu[i]=table(x.cut)[[i]]
+nu
+chi2.x=sum((nu-np)^2/np)
+chi2.x
+cat("p=",1-pchisq(chi2.x,length(a)-3),"\n")
+
+
+ k=5
+ p=seq(from=0, to=1,1/k)
+ p
+a=qexp(p)
+a
+np=vector()
+for (i in 1:(length(a)-1)) np[i]=1/k
+ np=np*length(x)
+np
+
+x.cut=cut(x/mean(x),breaks=a)
+x.cut
+  
+nu=vector()
+for (i in 1:(length(a)-1)) nu[i]=table(x.cut)[[i]]
+nu
+
+chi2.x=sum((nu-np)^2/np)
+chi2.x
+cat("p=",1-pchisq(chi2.x,length(a)-3),"\n")
+ 
+

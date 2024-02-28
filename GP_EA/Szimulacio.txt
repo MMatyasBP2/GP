@@ -1,0 +1,67 @@
+1. szimuláció
+
+brownian <- function(n.times){
+    x <- y <- x.new <- y.new <- x.new.p <- y.new.p <- vector()
+    for(i in 1:n.times){
+        # Változók inicializálása
+        x <- rnorm(1)
+        y <- rnorm(1)
+        # Összefûzzük a változókat
+        # hogy növeljük a vektor méretét
+        x.new <- c(x.new,x)
+        y.new <- c(y.new,y)
+        # Összegezzük a vektorokat
+        x.new.p <- cumsum(x.new)
+        y.new.p <- cumsum(y.new)  
+        # Modellezünk
+        plot(x.new.p,y.new.p,type="b",
+             main=paste("Brownian motion simulation in R\nTime =",i,sep=" "),
+             xlab="x coordinates",ylab="y coordinates",
+             col=c(rep("gray",i-1),"red"),
+             pch=c(rep(20,i-1),1))    
+    }
+}
+
+Ezt követõen gépeljük be, hogy:
+brownian(500)
+
+
+2. szimuláció
+
+t <- 0:100  # idõ
+sig2 <- 0.01
+## Elõször szimuláljunk egy sor véletlen teret
+x <- rnorm(n = length(t) - 1, sd = sqrt(sig2))
+## Most alkalmazzuk rájuk a halmozott összeget
+x <- c(0, cumsum(x))
+plot(t, x, type = "l", ylim = c(-2, 2))
+
+
+
+
+3. szimuláció 
+
+nsim <- 100
+X <- matrix(rnorm(n = nsim * (length(t) - 1), sd = sqrt(sig2)), nsim, length(t) - 
+    1)
+X <- cbind(rep(0, nsim), t(apply(X, 1, cumsum)))
+plot(t, X[1, ], xlab = "time", ylab = "phenotype", ylim = c(-2, 2), type = "l")
+apply(X[2:nsim, ], 1, function(x, t) lines(t, x), t = t)
+
+
+4. szimuláció
+
+X <- matrix(rnorm(n = nsim * (length(t) - 1), sd = sqrt(sig2/10)), nsim, length(t) - 
+    1)
+X <- cbind(rep(0, nsim), t(apply(X, 1, cumsum)))
+plot(t, X[1, ], xlab = "time", ylab = "phenotype", ylim = c(-2, 2), type = "l")
+apply(X[2:nsim, ], 1, function(x, t) lines(t, x), t = t)
+
+
+
+
+
+
+
+
+

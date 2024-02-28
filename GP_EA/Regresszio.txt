@@ -1,0 +1,139 @@
+set.seed(38)
+n=20
+a=32;b=5
+x=rnorm(n);epsilon=rnorm(n)
+y=a+b*x+0.1*epsilon
+plot(x,y)
+
+
+set.seed(38)
+n=20
+a=32;b=5
+x=rnorm(n);epsilon=rnorm(n)
+z=a+b*x+epsilon
+plot(x,z)
+
+set.seed(38)
+n=20
+a=32;b=5
+x=rnorm(n);epsilon=rnorm(n)
+y=a+b*x+0.1*epsilon
+plot(x,y)
+abline(a,b, lty=2, lwd=3)
+
+abline(lm(y~x), col="red", lwd=3)
+
+summary(lm(y~x))
+
+Call:
+lm(formula = y ~ x)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.204676 -0.056521 -0.005408  0.070688  0.226248 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 32.00867    0.02460  1301.0   <2e-16 ***
+x            4.99216    0.03142   158.9   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.1099 on 18 degrees of freedom
+Multiple R-squared:  0.9993,    Adjusted R-squared:  0.9992 
+F-statistic: 2.525e+04 on 1 and 18 DF,  p-value: < 2.2e-16
+
+
+set.seed(38)
+n=20
+a=32;b=5
+x=rnorm(n);epsilon=rnorm(n)
+z=a+b*x+epsilon
+plot(x,z)
+abline(a,b, lty=2, lwd=3)
+
+abline(lm(z~x), col="red", lwd=3)
+
+summary(lm(z~x))
+
+Call:
+lm(formula = z ~ x)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.04676 -0.56521 -0.05408  0.70688  2.26248 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  32.0867     0.2460  130.42  < 2e-16 ***
+x             4.9216     0.3142   15.66 6.22e-12 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.099 on 18 degrees of freedom
+Multiple R-squared:  0.9317,    Adjusted R-squared:  0.9279 
+F-statistic: 245.4 on 1 and 18 DF,  p-value: 6.222e-12
+
+
+
+
+set.seed(38)
+n=20
+a=32;b=5
+x=rnorm(n);epsilon=rnorm(n)
+y=a+b*x+5*epsilon
+plot(x,y)
+abline(a,b, lty=2, lwd=3)
+
+abline(lm(y~x), col="red", lwd=3)
+
+summary(lm(y~x))
+
+Call:
+lm(formula = y ~ x)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-10.2338  -2.8261  -0.2704   3.5344  11.3124 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   32.434      1.230  26.366  7.8e-16 ***
+x              4.608      1.571   2.934  0.00888 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 5.497 on 18 degrees of freedom
+Multiple R-squared:  0.3234,    Adjusted R-squared:  0.2859 
+F-statistic: 8.605 on 1 and 18 DF,  p-value: 0.008878
+
+
+set.seed(38)
+n=200
+a=32;b=5
+x=rnorm(n);epsilon=rnorm(n)
+y=a+b*x+5*epsilon
+plot(x,y)
+abline(a,b, lty=2, lwd=3)
+
+abline(lm(y~x), col="red", lwd=3)
+
+summary(lm(y~x))
+
+Call:
+lm(formula = y ~ x)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-12.3088  -3.5666  -0.7507   3.6359  13.6598 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  32.2465     0.3562   90.52   <2e-16 ***
+x             5.0534     0.3700   13.66   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 5.034 on 198 degrees of freedom
+Multiple R-squared:  0.485,     Adjusted R-squared:  0.4824 
+F-statistic: 186.5 on 1 and 198 DF,  p-value: < 2.2e-16

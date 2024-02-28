@@ -1,0 +1,31 @@
+
+# példa
+
+price=read.csv("c:/A_FS_2020_korona/GP_munka/GOOG.csv")
+#GOOG has 253 values 
+x <- diff(log(price[,6]))
+par(mfrow=c(1,2))
+plot(density(x),main="density of Google returns")
+z <- seq(min(x),max(x),length=201)
+y <- dnorm(z,mean=mean(x),sd=sd(x))
+lines(z,y,lty=2)
+qqnorm(x)
+qqline(x)
+
+get.stock.price <- function( symbol, start.date=c(1,1,2008),
+stop.date=c(12,31,2008), print.info=TRUE ) {
+# gets adjusted closing price data from yahoo.com 
+x <- get.stock.data(symbol,start.date,stop.date,print.info)
+return(x$Adj.Close) }
+
+
+price <- get.stock.price("GOOG")
+x <- diff(log(price))
+par(mfrow=c(1,2))
+plot(density(x),main="density of Google returns")
+z <- seq(min(x),max(x),length=201)
+y <- dnorm(z,mean=mean(x),sd=sd(x))
+lines(z,y,lty=2)
+qqnorm(x)
+qqline(x)
+

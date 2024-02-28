@@ -1,0 +1,47 @@
+x=rnorm(1000)
+qqnorm(y)
+qqnorm(x)
+qqnorm(y)
+qqline(x,lty=2)
+qqnorm(x);qqline(x,lty=2)
+qqnorm(x)
+qqnorm(x);qqline(x)
+x=rexp(1000);qqnorm(x);qqline(x)
+x=rexp(1000);qqexp(x);qqline(x)
+x=rcauchy(1000);qqnorm(x);qqline(x)
+x=runif(1000);qqnorm(x);qqline(x)
+hist(x)
+hist(x,"green")
+hist(x,color="green")
+hist(x,col="green")
+x=rcauchy(1000);hist(x);qqnorm(x);qqline(x)
+x=rcauchy(1000);hist(x)
+x=rnorm(1000)*3+12;hist(x,col="green")
+qqnorm(x);qqline(x)
+x=rcauchy(1000)*3+12;hist(x,col="green")
+qqnorm(x);qqline(x)
+?skew
+??skewness
+?chitest
+x=rnorm(1000);y=rnorm(1000);qqplot(x,y)
+x=rnorm(1000);y=rexp(1000);qqplot(x,y)
+x=rnorm(1000);y=rcauchy(1000);qqplot(x,y)
+chisq.test(x)
+skew<-function(x){
+m3<-sum((x-mean(x))^3)/length(x)
+s3<-sqrt(var(x))^3
+m3/s3 }
+skew(x)
+skew(y)
+skew(y)
+kurtosis<-function(x) {
+m4<-sum((x-mean(x))^4)/length(x)
+s4<-var(x)^2
+m4/s4 - 3 }
+kurtosis(x)
+kurtosis(y)
+summary(x)
+summary(y)
+?delete
+??delete
+save.image("C:\\FS_munka_2014\\R_FS_2014\\R_proba2")

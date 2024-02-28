@@ -1,0 +1,43 @@
+library(MASS)
+
+xy<-mvrnorm(1000,mu=c(50,60),matrix(c(4,3.7,3.7,9),2))
+var(xy)
+
+xy<-mvrnorm(10000,mu=c(50,60),matrix(c(4,3.7,3.7,9),2))
+var(xy)
+
+cor(xy)
+
+v=matrix(c(4,3.7,3.7,9),2)
+v
+w=chol(v)
+t(w)%*%w
+
+z1=rnorm(10000)
+z2=rnorm(10000)
+zm=matrix(c(z1,z2),ncol=2)
+zn=zm%*%w
+var(zn);v
+
+plot(zn)
+points(zm,col='red')
+
+Y = a + b X + epsilon
+
+N <- 1000
+a <- 1
+b <- -1
+Z <- rnorm(N)
+epsilon <- rnorm(N)
+eta <- rnorm(N)
+aa <- runif(1)
+bb <- runif(1)
+X <- (aa + bb * Z + epsilon) + eta
+Y <- a + b * X + epsilon
+plot(X,Y)
+abline(a,b, lty=2, lwd=3)
+abline(lm(Y~X), col="red", lwd=3)
+
+
+
+

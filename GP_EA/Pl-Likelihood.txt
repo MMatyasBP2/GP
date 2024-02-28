@@ -1,0 +1,95 @@
+
+set.seed(139)
+xi=rweibull(1000,shape=1.7,scale=200)
+
+#weibull loglikelihood fv.
+  weibull_loglik <- function(parm){
+    gamma <- parm[1]
+    lambda <- parm[2]
+    loglik <- sum(dweibull(vec, shape=gamma, scale=lambda, log=TRUE))
+    return(-loglik)
+  }
+  
+   
+   #weibull feladat
+   
+   vec<-xi
+   weibull<-nlm(weibull_loglik,parm<-c(1,1), hessian=TRUE,iterlim = 100)
+   weibull$estimate
+  
+  #install weibulness package
+   
+   library(weibullness)
+   
+   
+   weibull.mle(xi)
+   
+   # Two-parameter Weibull
+weibull.mle(xi, threshold=0)
+
+
+set.seed(139)
+xi=rcauchy(500)*50+300
+
+
+#Cauchy loglikelihood fv.
+  cauchy_loglik <- function(parm){
+    c <- parm[1]
+    s <- parm[2]
+    loglik <- sum(dcauchy(vec, location = c, scale = s, log = TRUE))
+    return(-loglik)
+  }
+  
+   
+   #Cauchy feladat
+   
+   vec<-xi
+    cauchy<-nlm(cauchy_loglik,parm<-c(median(xi),mad(xi)*qnorm(0.75)), hessian=TRUE,iterlim=1000)
+   cauchy$estimate
+   
+   
+   #Robusztus megoldás (cauchy)
+   
+   psi=function(x){return(atan(x)/pi)}
+   
+   T=median(xi);s=mad(xi);eps=1e-9;s2=mad(xi)*qnorm(0.75);i=0
+   while (abs(s-s2)>eps){ 
+    s=s2;
+    T=T+s*mean(psi((xi-T)/s));s2=s*sqrt(12*mean(psi((xi-T)/s)^2));
+    i=i+1;
+    }
+   print(i);print(T);print(s)
+
+ #Robusztus megoldás (weibull) 
+ 
+ set.seed(139)
+xi=rweibull(1000,shape=1.7,scale=200)
+eta=log(xi) 
+ psi=function(x){return(0.5-exp(-exp(x)))}
+ 
+ T=median(eta);s=mad(eta);eps=1e-9;s2=mad(eta)*qnorm(0.75);i=0
+    while (abs(s-s2)>eps){ 
+     s=s2;
+     T=T+s*mean(psi((eta-T)/s));s2=s*sqrt(12*mean(psi((eta-T)/s)^2));
+     i=i+1;
+    }
+    
+    print(exp(T));print(1/s)
+    
+    
+    set.seed(139)
+    xi=rweibull(1000,shape=1.7,scale=200)
+    eta=log(xi) 
+     psi=function(x){return(0.5-exp(-exp(x)))}
+     
+     T=median(eta);s=mad(eta);eps=1e-9;T2=T+0.1;i=0
+        while (abs(T-T2)>eps){ 
+         T=T2;
+         T2=T+s*mean(psi((eta-T)/s));s=s*sqrt(12*mean(psi((eta-T)/s)^2));
+         i=i+1;
+        }
+        
+    print(exp(T));print(1/s)
+    
+    
+ 

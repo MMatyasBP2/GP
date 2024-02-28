@@ -1,0 +1,50 @@
+http://r-project.org # honlap és installálás
+
+Start | Programs | R | R | x.y.z # verziószám
+
+q() # File | Exit
+
+> help.start()
+
+
+## R, mint kalkulátor
+
+> 5 - 1 + 10 # add and subtract
+[1] 14
+> 7 * 10 / 2 # multiply and divide
+[1] 35
+> pi # the constant pi
+[1] 3.141593
+> sqrt(2) # square root
+[1] 1.414214
+> exp(1) # e to the power of 1
+[1] 2.718282
+
+## Értékadás
+
+> x <- 5 # The object (variable) x holds the value 5
+> x # print x
+[1] 5
+> 6 -> x # x now holds the value 6
+> x
+[1] 6
+
+> (x <- pi) # assign the constant pi and print x
+[1] 3.141593
+
+## Végrehajtó utasítások(függvények)
+
+> print(x) # print() is a function. It prints its argument, x
+[1] 6
+> ls() # lists the objects in memory
+[1] "x"
+> rm(x) # remove x from memory
+> ls() # no objects in memory, therefore:
+character(0)
+
+## Foglalt nevek
+
+> t
+function (x)
+UseMethod("t")
+<environment: namespace:base>

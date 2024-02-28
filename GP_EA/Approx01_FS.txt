@@ -1,0 +1,27 @@
+
+https://www.math.unl.edu/~sdunbar1/MathematicalFinance/
+
+
+
+m <- 6;
+n <- 61;
+S0 <- 70;
+S1 <- 130;
+K <- 100;
+r <- 0.12;
+T <- 1.0;
+sigma <- 0.10;
+
+time <- seq (T ,0, length =m);
+S <- seq(S0 ,S1 , length =n);
+
+numerd1 <- outer ( ( (r + sigma ^2/2)*(T- time )), log (S/K),"+");
+numerd2 <- outer ( ( (r - sigma ^2/2)*(T- time )), log (S/K),"+");
+
+d1 <- numerd1 /( sigma * sqrt (T- time ));
+d2 <- numerd2 /( sigma * sqrt (T- time ));
+part1 <- K*exp(-r*(T- time ))* pnorm (-d2);
+part2 <- t(t( pnorm (-d1))*S);
+VC <- part1 - part2 ;
+
+matplot (S, t(VC), type = "l");

@@ -1,0 +1,26 @@
+% maximum likelihood normális
+mu <- 20 ; sigma.2 <- 4 ; set.seed(33)
+X <- rnorm(100, mu, sqrt(sigma.2))
+log.L <- function(mu.hat = 15, sigma.2.hat = 6){
+ n <- length(X)
+ n / 2 * log(2 * pi * sigma.2.hat) +
+ 1/2 * sum((X - mu.hat)^2 / sigma.2.hat)
+ }
+ 
+ % load stats4 package
+ 
+ library(stats4)
+(fit <- mle(log.L))
+
+# maximum likelihood Cauchy
+c<- 20 ; s<- 4 ; set.seed(33)
+X <- rcauchy(100)*s+c 
+log.L <- function(c.hat = median(X), s.hat = mad(X)*qnorm(0.75)){
+	n <- length(X)
+  	-n*log(s.hat)+sum(log(sqr(s.hat)+sqr(X-c.hat)))
+ }
+ 
+ #load stats4 package
+ 
+ library(stats4)
+(fit <- mle(log.L))

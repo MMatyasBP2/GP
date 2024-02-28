@@ -1,0 +1,31 @@
+n=10000
+a=65539
+m=2^31
+x=vector();y=vector();z=vector()
+x0=507
+for (i in 1:n){
+if (i>1)  {x[i]=(a*z[i-1])%%m} else {x[i]=(a*x0)%%m}
+y[i]=(a*x[i])%%m
+z[i]=(a*y[i])%%m
+}
+
+
+xi=x/m
+eta=y/m
+zeta=z/m
+
+plot(xi,eta)
+
+
+#scatterplot3d csomag betöltése és installálása
+
+scatterplot3d(xi,eta,zeta, highlight.3d = TRUE, col.axis = "blue",angle=120,
+  col.grid = "lightblue", main = "RANDU", type ="l")
+  
+scatterplot3d(xi,eta,zeta, highlight.3d = TRUE, col.axis = "blue",angle=120,
+  col.grid = "lightblue", main = "RANDU")
+
+scatterplot3d(xi,eta,zeta, highlight.3d = TRUE, col.axis = "blue",angle=155,
+  col.grid = "lightblue", main = "RANDU")
+
+scatterplot3d(xi,eta,zeta, highlight.3d = TRUE, col.axis = "blue",angle=155,col.grid = "lightblue", main = "RANDU",pch=20)

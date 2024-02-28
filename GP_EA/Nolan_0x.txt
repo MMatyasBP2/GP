@@ -1,0 +1,54 @@
+https://finance.yahoo.com/quote/GOOG/history?p=GOOG
+
+
+# R programs for Math Finance class
+# John Nolan, American University jpnolan@american.edu
+#######################################################################
+get.stock.data <- function( symbol, start.date=c(1,1,2008),
+stop.date=c(12,31,2008), print.info=TRUE ) {
+# get stock data from yahoo.com for specified symbol in the
+# specified time period. The result is a data.frame with columns for:
+# Date, Open, High, Low, Close,Volume, Adj.Close
+url <- paste("https://finance.yahoo.com/quote/GOOG/history?p=GOOG",
+start.date[1]-1,"&b=",start.date[2],"&c=",start.date[3],
+"&d=",stop.date[1]-1,"&e=",stop.date[2],"&f=",stop.date[3],"&s=",
+symbol,sep="")
+x <- read.csv(url)
+# data has most recent days first, going back to start date
+n <- length(x$Date); date <- as.character(x$Date[c(1,n)])
+if (print.info) cat(symbol,"has", n,"values from",date[2],"to",date[1],"\n")
+# data is in reverse order from the read.csv command
+x$Date <- rev(x$Date)
+x$Open <- rev(x$Open)
+x$High <- rev(x$High)
+x$Low <- rev(x$Low)
+x$Close <- rev(x$Close)
+x$Volume <- rev(x$Volume)
+x$Adj.Close <- rev(x$Adj.Close)
+return(x) }
+#######################################################################
+get.stock.price <- function( symbol, start.date=c(1,1,2008),
+stop.date=c(12,31,2008), print.info=TRUE ) {
+# gets adjusted closing price data from yahoo.com for specified symbol24 John P. Nolan
+x <- get.stock.data(symbol,start.date,stop.date,print.info)
+return(x$Adj.Close) }
+#######################################################################
+get.portfolio.returns = function( symbols, start.date=c(1,1,2008),
+stop.date = c(12,31,2008) ){
+# get a table of returns for the specified stocks in the stated time period
+n = length(symbols)
+for (i in 1:n) {
+t1 = get.stock.data( symbols[i], start.date=start.date, stop.date=stop.date)
+# need to merge columns, possibly with mismatching dates
+a = data.frame(t1$Date,t1$Adj.Close)
+names(a) = c("Date",symbols[i])
+if (i == 1) {b=a}
+else {b = merge(b,a,sort=FALSE)}
+}
+# leave off the date column
+nn = dim(b)[1]
+cat(" ",nn,"dates with values for all stocks,",nn-1,"returns calculated\n")
+b = b[,2:ncol(b)]
+bb = data.frame(apply(b,2,"log.ratio"))
+names(bb) = symbols
+return(bb) }

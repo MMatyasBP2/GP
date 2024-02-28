@@ -1,0 +1,14 @@
+x=rnorm(100,2,5)
+qqnorm(x)
+qqline(x)
+points(0,1, pch=0, col="red")
+points(0,2, pch=0, col="red")
+points(2,12, pch=0, col="red")
+points(-2,8, pch=0, col="red")
+points(-2,-8, pch=0, col="red")
+
+xq=c(-2,0,2);yq=c(-8,2,12)
+qqnorm(x)
+points(xq,yq,pch=0,col="red")
+qqline(x)
+ 
